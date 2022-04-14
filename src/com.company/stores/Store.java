@@ -7,7 +7,7 @@ import com.company.stores.products.Product;
 public class Store {
     private final UUID id;
     private String name;
-    private Adress adress;
+    private Address address;
     private int numberProducts;
     private String status = ""; ///Open close;
     private ArrayList<Product> products = new ArrayList<Product>();
@@ -17,10 +17,10 @@ public class Store {
         this.id = UUID.randomUUID();
     }
 
-    public Store( String name, Adress adress, int numberProducts, String status, ArrayList<Map<Integer, Integer>> program, ArrayList<Product> products) {
+    public Store(String name, Address address, int numberProducts, String status, ArrayList<Map<Integer, Integer>> program, ArrayList<Product> products) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.numberProducts = numberProducts;
         this.status = status;
         this.program = program;
@@ -39,12 +39,12 @@ public class Store {
         return this;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAdress() {
+        return address;
     }
 
-    public Store setAdress(Adress adress) {
-        this.adress = adress;
+    public Store setAdress(Address address) {
+        this.address = address;
         return this;
     }
 
@@ -87,7 +87,7 @@ public class Store {
     public Store(Store store){
         this.id = store.id;
         this.name = store.name;
-        this.adress = store.adress;
+        this.address = store.address;
         this.numberProducts = store.numberProducts;
         this.status = store.status;
         this.program = store.program;
@@ -98,7 +98,7 @@ public class Store {
     public String toString() {
         return "Store{" +
                 "name='" + name + '\'' +
-                ", adress=" + adress.toString() +
+                ", adress=" + address.toString() +
                 ", numberProducts=" + numberProducts +
                 ", status='" + status + '\'' +
                 ", program=" + program +

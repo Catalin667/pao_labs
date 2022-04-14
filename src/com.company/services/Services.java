@@ -7,12 +7,11 @@ import com.company.stores.products.Instrument;
 import com.company.stores.products.Product;
 import com.company.stores.products.Review;
 import com.company.users.Admin;
-import com.company.users.Costumer;
+import com.company.users.Customer;
 import com.company.comparator.ProductComparator;
-import com.company.stores.Adress;
+import com.company.stores.Address;
 import com.company.stores.Store;
 import com.company.stores.Voucher;
-import com.company.users.*;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,8 +23,8 @@ public class Services {
     private static final Scanner read = new Scanner(System.in);
     private ArrayList<Product> productsList = new ArrayList<Product>();
     private Map<UUID,Product>productsMap = new HashMap<>();
-    private Map<UUID, Costumer> costumersList = new HashMap<>();
-    private ArrayList<Adress> adressesList = new ArrayList<Adress>();
+    private Map<UUID, Customer> costumersList = new HashMap<>();
+    private ArrayList<Address> adressesList = new ArrayList<Address>();
     private Map<UUID, Store> storesList = new HashMap<>();
     private Map<UUID, Order> orderList = new HashMap<>();
     private Map<UUID, Voucher> voucherMap = new HashMap<>();
@@ -46,10 +45,10 @@ public class Services {
 
 
     private void init(){
-        Adress a1 = new Adress("Brasov","Sforii",1,"Brasov");
-        Adress a2=  new Adress("Brasov","Toamnei",5,"Brasov");
-        Adress a3 = new Adress("Sibiu","Buhusi",2,"Sibiu");
-        Adress a4 = new Adress("Cluj","Mica",31, "Cluj");
+        Address a1 = new Address("Brasov","Sforii",1,"Brasov");
+        Address a2=  new Address("Brasov","Toamnei",5,"Brasov");
+        Address a3 = new Address("Sibiu","Buhusi",2,"Sibiu");
+        Address a4 = new Address("Cluj","Mica",31, "Cluj");
 
         adressesList.add(0,a1);
         adressesList.add(0,a2);
@@ -107,11 +106,11 @@ public class Services {
         storesList.put(s3.getId(),s3);
         storesList.put(s4.getId(),s4);
 
-        Costumer c1 = new Costumer("Popescu","Ionut",null,null);
-        Costumer c2 = new Costumer("Marinescu","Maria",null,null);
-        Costumer c3 = new Costumer("Ionescu","Ionela",null,null);
-        Costumer c4 = new Costumer("Mihai","Ionut",null,null);
-        Costumer c5 = new Costumer("Popa","Elena",null,null);
+        Customer c1 = new Customer("Popescu","Ionut",null,null);
+        Customer c2 = new Customer("Marinescu","Maria",null,null);
+        Customer c3 = new Customer("Ionescu","Ionela",null,null);
+        Customer c4 = new Customer("Mihai","Ionut",null,null);
+        Customer c5 = new Customer("Popa","Elena",null,null);
 
         costumersList.put(c1.getId(),c1);
         costumersList.put(c2.getId(),c2);
@@ -167,19 +166,19 @@ public class Services {
         }
     }
 
-    private Costumer checkIfIdExistInCostumers(UUID id) throws IOException{
+    private Customer checkIfIdExistInCostumers(UUID id) throws IOException{
         boolean check = false;
-        Costumer costumer = null;
-        for(Map.Entry<UUID,Costumer> pair : costumersList.entrySet()) {
+        Customer customer = null;
+        for(Map.Entry<UUID, Customer> pair : costumersList.entrySet()) {
             if(id.equals(pair.getKey())){
                 check = true;
-                costumer = pair.getValue();
+                customer = pair.getValue();
             }
         }
         if(!check){
             throw new IOException("Costumer id doesn't exist!");
         }
-        return costumer;
+        return customer;
     }
 
     private boolean login(){
@@ -235,8 +234,8 @@ public class Services {
                     addProductInList(product);
                     break;
                 case 3:
-                    Costumer costumer = createCostumer();
-                    addCostumerInMap(costumer);
+                    Customer customer = createCostumer();
+                    addCostumerInMap(customer);
                     break;
                 case 4:
                     Order order = createOrderAdmin();
@@ -283,7 +282,7 @@ public class Services {
                     break;
                 case 3:
                     System.out.println("Costumers Id:");
-                    for(Map.Entry<UUID,Costumer> pair : costumersList.entrySet()){
+                    for(Map.Entry<UUID, Customer> pair : costumersList.entrySet()){
                         System.out.println(pair.getValue().getId() + " " + pair.getValue().getFirstName() + " "+ pair.getValue().getLastName());
                     }
 
@@ -371,7 +370,7 @@ public class Services {
         return new Voucher(voucherType,mesaje,value);
     }
 
-    private Adress createAnAdress(){
+    private Address createAnAdress(){
         System.out.println("Please, enter a city: ");
         String city = read.nextLine();
         System.out.println("Please, enter a street: ");
@@ -382,11 +381,11 @@ public class Services {
         System.out.println("Please, enter county city: ");
         String county = read.nextLine();
 
-        return new Adress(city,street,number,county);
+        return new Address(city,street,number,county);
     }
 
-    private void addAdressInList(Adress adress){
-        adressesList.add(adress);
+    private void addAdressInList(Address address){
+        adressesList.add(address);
     }
 
     private Card createACard(){
@@ -410,31 +409,31 @@ public class Services {
         return new Card(number,validThru,type,authorisedSignature);
     }
 
-    private Costumer createCostumer(){
+    private Customer createCostumer(){
         System.out.println("Please, enter the firstname of costumer: ");
         String firstName = read.nextLine();
         System.out.println("Please, enter the lastname of costumer: ");
         String lastName = read.nextLine();
         System.out.println("Do you want to add your adress? (Y/N)");
-        Adress adress = null;
+        Address address = null;
         Card card = null;
         char choiceHere = checkYesOrNo();
         if(choiceHere=='Y' || choiceHere == 'y')
-            adress = createAnAdress();
+            address = createAnAdress();
         System.out.println("Do you want to add your card? (Y/N)");
         choiceHere = checkYesOrNo();
         if(choiceHere=='Y' || choiceHere == 'y')
             card = createACard();
-        return new Costumer(firstName,lastName,adress,card);
+        return new Customer(firstName,lastName, address,card);
     }
 
     private Order createOrderAdmin(){
         System.out.println("Do you want to add a new costumer? (Y/N)");
-        Costumer costumer = null;
+        Customer customer = null;
         char choiceHere = checkYesOrNo();
         if(choiceHere=='Y' || choiceHere == 'y')
         {
-            costumer = createCostumer();
+            customer = createCostumer();
         }
         System.out.println("Please, enter payment method (Card/Cash): ");
         String paymentMethod = read.nextLine();
@@ -473,18 +472,18 @@ public class Services {
         }
 
 
-        return new Order(costumer,paymentMethod,thisStore,price,products);
+        return new Order(customer,paymentMethod,thisStore,price,products);
     }
 
     private Review createReview(){
         System.out.println("Please, enter your id:");
-        Costumer costumer = null;
+        Customer customer = null;
         boolean check = false;
         while(!check) {
             try {
                 String idCostumerString = read.nextLine();
                 UUID idCostumer = UUID.fromString(idCostumerString);
-                costumer = checkIfIdExistInCostumers(idCostumer);
+                customer = checkIfIdExistInCostumers(idCostumer);
                 check = true;
             } catch (IllegalArgumentException exception) {
                 System.out.println("Invalid id :(((. Please, enter a valid id");
@@ -498,7 +497,7 @@ public class Services {
         System.out.println("Please, add a note for this product (1->10)");
         int numberStars = read.nextInt();
         read.nextLine();
-        return new Review(costumer,mesaje,numberStars);
+        return new Review(customer,mesaje,numberStars);
     }
 
     private Product createAProduct(){
@@ -594,7 +593,7 @@ public class Services {
     private Store createAStore(){
         System.out.println("Please, enter the name of the store: ");
         String name = read.nextLine();
-        Adress adress = createAnAdress();
+        Address address = createAnAdress();
         System.out.println("Please, enter the status of the store (open/closed):");
         String status = read.nextLine();
         int numberProducts = 0;
@@ -628,7 +627,7 @@ public class Services {
         if(choice=='Y' || choice=='y'){
             program = addProgram();
         }
-        return new Store(name,adress,numberProducts,status,program,productsList);
+        return new Store(name, address,numberProducts,status,program,productsList);
     }
 
     private void addStoreInList(Store store){
@@ -644,9 +643,9 @@ public class Services {
         }
     }
 
-    private void addCostumerInMap(Costumer costumer){
-        UUID id = costumer.getId();
-        costumersList.put(id,costumer);
+    private void addCostumerInMap(Customer customer){
+        UUID id = customer.getId();
+        costumersList.put(id, customer);
     }
 
     private void addOrderInMap(Order order){

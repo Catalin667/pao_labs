@@ -1,24 +1,24 @@
 package com.company.users;
 
 import com.company.stores.orders.Card;
-import com.company.stores.Adress;
+import com.company.stores.Address;
 
 import java.util.UUID;
 
-public class Costumer {
+public class Customer {
     private final UUID id;
     private String firstName;
     private String lastName;
-    private Adress adress;
+    private Address address;
     private Card card;
 
-    public Costumer(){
+    public Customer(){
         this.id = UUID.randomUUID();
     }
-    public Costumer(String firstName, String lastName, Adress adress, Card card) {
+    public Customer(String firstName, String lastName, Address address, Card card) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.adress = adress;
+        this.address = address;
         this.card = card;
         this.id = UUID.randomUUID();
     }
@@ -31,7 +31,7 @@ public class Costumer {
         return firstName;
     }
 
-    public Costumer setFirstName(String firstName) {
+    public Customer setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -40,17 +40,17 @@ public class Costumer {
         return lastName;
     }
 
-    public Costumer setLastName(String lastName) {
+    public Customer setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAdress() {
+        return address;
     }
 
-    public Costumer setAdress(Adress adress) {
-        this.adress = adress;
+    public Customer setAdress(Address address) {
+        this.address = address;
         return this;
     }
 
@@ -58,7 +58,7 @@ public class Costumer {
         return card;
     }
 
-    public Costumer setCard(Card card) {
+    public Customer setCard(Card card) {
         this.card = card;
         return this;
     }
@@ -68,7 +68,7 @@ public class Costumer {
         return "Costumer{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", adress=" + adress +
+                ", adress=" + address +
                 ", card=" + card +
                 '}';
     }

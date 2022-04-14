@@ -1,32 +1,32 @@
 package com.company.stores.orders;
 
 import com.company.stores.products.Product;
-import com.company.stores.Adress;
+import com.company.stores.Address;
 import com.company.stores.Store;
 import com.company.stores.Voucher;
-import com.company.users.Costumer;
+import com.company.users.Customer;
 
 import java.util.ArrayList;
 
 public class OnlineOrder extends Order {
-    private Adress delivaryAdress;
+    private Address delivaryAddress;
     private  Voucher Voucher;
     public OnlineOrder(){
 
     }
 
-    public OnlineOrder(Costumer costumer, String paymentMethod, Store store, double price, ArrayList<Product> products, Adress delivaryAdress, com.company.stores.Voucher voucher) {
-        super(costumer, paymentMethod, store, price,products);
-        this.delivaryAdress = delivaryAdress;
+    public OnlineOrder(Customer customer, String paymentMethod, Store store, double price, ArrayList<Product> products, Address delivaryAddress, com.company.stores.Voucher voucher) {
+        super(customer, paymentMethod, store, price,products);
+        this.delivaryAddress = delivaryAddress;
         Voucher = voucher;
     }
 
-    public Adress getDelivaryAdress() {
-        return delivaryAdress;
+    public Address getDelivaryAdress() {
+        return delivaryAddress;
     }
 
-    public OnlineOrder setDelivaryAdress(Adress delivaryAdress) {
-        this.delivaryAdress = delivaryAdress;
+    public OnlineOrder setDelivaryAdress(Address delivaryAddress) {
+        this.delivaryAddress = delivaryAddress;
         return this;
     }
 
@@ -42,7 +42,7 @@ public class OnlineOrder extends Order {
     @Override
     public String toString() {
         return "OnlineOrder{" +
-                "delivaryAdress=" + delivaryAdress +
+                "delivaryAdress=" + delivaryAddress +
                 ", Voucher=" + Voucher.toString() +
                 ", costumer=" + getCostumer().toString() +
                 ", paymentMethod='" + getPaymentMethod() + '\'' +

@@ -1,16 +1,16 @@
 package com.company.stores;
 
-public class Adress {
+public class Address {
     private String city;
     private String street;
     private int number;
     private String county;
 
-    public Adress(){
+    public Address(){
 
     }
 
-    public Adress(String city, String street, int number, String county) {
+    public Address(String city, String street, int number, String county) {
         this.city = city;
         this.street = street;
         this.number = number;
@@ -21,7 +21,7 @@ public class Adress {
         return city;
     }
 
-    public Adress setCity(String city) {
+    public Address setCity(String city) {
         this.city = city;
         return this;
     }
@@ -30,7 +30,7 @@ public class Adress {
         return street;
     }
 
-    public Adress setStreet(String street) {
+    public Address setStreet(String street) {
         this.street = street;
         return this;
     }
@@ -39,7 +39,7 @@ public class Adress {
         return number;
     }
 
-    public Adress setNumber(int number) {
+    public Address setNumber(int number) {
         this.number = number;
         return this;
     }
@@ -48,7 +48,7 @@ public class Adress {
         return county;
     }
 
-    public Adress setCounty(String county) {
+    public Address setCounty(String county) {
         this.county = county;
         return this;
     }

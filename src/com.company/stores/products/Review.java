@@ -1,12 +1,12 @@
 package com.company.stores.products;
 
-import com.company.users.Costumer;
+import com.company.users.Customer;
 
 import java.util.UUID;
 
 public class Review {
     private final UUID id;
-    private Costumer costumer;
+    private Customer customer;
     private String mesaje;
     private int numberStars;
 
@@ -14,8 +14,8 @@ public class Review {
         this.id = UUID.randomUUID();
     }
 
-    public Review(Costumer costumer, String mesaje, int numberStars) {
-        this.costumer = costumer;
+    public Review(Customer customer, String mesaje, int numberStars) {
+        this.customer = customer;
         this.mesaje = mesaje;
         this.numberStars = numberStars;
         this.id = UUID.randomUUID();
@@ -25,12 +25,12 @@ public class Review {
         return id;
     }
 
-    public Costumer getCostumer() {
-        return costumer;
+    public Customer getCostumer() {
+        return customer;
     }
 
-    public Review setCostumer(Costumer costumer) {
-        this.costumer = costumer;
+    public Review setCostumer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 
@@ -55,7 +55,7 @@ public class Review {
     @Override
     public String toString() {
         return "Review{" +
-                "costumer=" + costumer.toString() +
+                "costumer=" + customer.toString() +
                 ", mesaje='" + mesaje + '\'' +
                 ", numberStars=" + numberStars +
                 '}';

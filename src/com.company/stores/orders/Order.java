@@ -2,7 +2,7 @@ package com.company.stores.orders;
 
 import com.company.stores.products.Product;
 import com.company.stores.Store;
-import com.company.users.Costumer;
+import com.company.users.Customer;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Order {
     private final UUID id;
     private static int orderNumber = 0;
-    private Costumer costumer;
+    private Customer customer;
     private String paymentMethod;
     private Store store;
     private double price;
@@ -21,9 +21,9 @@ public class Order {
         orderNumber++;
     }
 
-    public Order(Costumer costumer, String paymentMethod, Store store, double price, ArrayList<Product> products) {
+    public Order(Customer customer, String paymentMethod, Store store, double price, ArrayList<Product> products) {
         this.id = UUID.randomUUID();
-        this.costumer = costumer;
+        this.customer = customer;
         this.paymentMethod = paymentMethod;
         this.store = store;
         this.price = price;
@@ -35,12 +35,12 @@ public class Order {
         return id;
     }
 
-    public Costumer getCostumer() {
-        return costumer;
+    public Customer getCostumer() {
+        return customer;
     }
 
-    public Order setCostumer(Costumer costumer) {
-        this.costumer = costumer;
+    public Order setCostumer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 
@@ -87,7 +87,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "costumer=" + costumer +
+                "costumer=" + customer +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", store=" + store.toString() +
                 ", price=" + price +
