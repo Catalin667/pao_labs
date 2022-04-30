@@ -1,5 +1,7 @@
 package com.company.stores.products;
 
+import java.util.List;
+
 public class Instrument extends Product {
     private int yearCreated;
     private int warranty;
@@ -8,7 +10,7 @@ public class Instrument extends Product {
 
     }
 
-    public Instrument( String name, Review review, double price, String manufacturer, String category, String description,int yearCreated,int warranty) {
+    public Instrument(String name, List<Review> review, double price, String manufacturer, String category, String description, int yearCreated, int warranty) {
         super(name,review,price,manufacturer,category,description);
         this.yearCreated = yearCreated;
         this.warranty = warranty;

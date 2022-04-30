@@ -1,0 +1,6 @@
+sep=,
+name,review,price,manufacturer,category,description,gift
+microphone,listReview=[?review={|null|}?],1000,null,studio,description1,false
+headphones,listReview=[?review={|null|}?],800,null,studio,description2,false
+headphones,listReview=[?review={|null|}?],800,null,studio,description3,true
+audio pc cuble,listReview=[?review={|null|}?],100,null,home audio,description4,false

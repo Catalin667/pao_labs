@@ -1,0 +1,7 @@
+sep=,
+name,address,numberProducts,status,program,products
+Your music,address={|Cluj|Mica|31|Cluj|},0,open,program=null,products=null
+Music,address={|Sibiu|Buhusi|2|Sibiu|},0,open,program=null,products=null
+Perfect Music Store,address={|Brasov|Sforii|1|Brasov|},0,open,program=null,products=null
+Music,address={|Bucuresti|Strada Drumul Valea Doftanei|113|Bucuresti|},0,open,program=null,products=null
+Your music,address={|Cluj|Mica|31|Cluj|},9,open,products=null,program=null

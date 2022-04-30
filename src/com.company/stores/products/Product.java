@@ -1,25 +1,27 @@
 package com.company.stores.products;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public abstract class Product {
-    private static int productNumber = 0;
+
     private final UUID id;
     private String name;
-    private Review review;
+    private List<Review> review = new ArrayList<>();
     private double price;
     private String manufacturer;
     private String category;
     private  String description;
-
+//    private static int productNumber = 0;
     public Product(){
         this.id = UUID.randomUUID();
-        productNumber ++;
+//        productNumber ++;
     }
 
-    public Product(String name, Review review, double price, String manufacturer, String category, String description) {
+    public Product(String name, List<Review> review, double price, String manufacturer, String category, String description) {
         this.id = UUID.randomUUID();
-        productNumber ++;
+//        productNumber ++;
         this.name = name;
         this.review = review;
         this.price = price;
@@ -28,12 +30,12 @@ public abstract class Product {
         this.description = description;
     }
 
-    public static int getProductNumber() {
-        return productNumber;
-    }
+//    public static int getProductNumber() {
+//        return productNumber;
+//    }
 
-    public static void setProductNumber(int productNumber) {  Product.productNumber = productNumber;
-    }
+//    public static void setProductNumber(int productNumber) {  Product.productNumber = productNumber;
+//    }
 
     public UUID getId() {
         return id;
@@ -48,10 +50,10 @@ public abstract class Product {
         return this;
     }
 
-    public Review getReview() { return review;
+    public List<Review> getReview() { return review;
     }
 
-    public Product setReview(Review review) {
+    public Product setReview(List<Review> review) {
         this.review = review;
         return this;
     }

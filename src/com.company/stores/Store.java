@@ -9,15 +9,15 @@ public class Store {
     private String name;
     private Address address;
     private int numberProducts;
-    private String status = ""; ///Open close;
-    private ArrayList<Product> products = new ArrayList<Product>();
-    private ArrayList<Map<Integer, Integer>> program = new ArrayList<Map<Integer, Integer>>(8);
+    private String status = "closed"; ///Open/closed;
+    private List<Product> products = new ArrayList<>();
+    private List<Map<String, String>> program = new ArrayList<>(8);
 
     public Store(){
         this.id = UUID.randomUUID();
     }
 
-    public Store(String name, Address address, int numberProducts, String status, ArrayList<Map<Integer, Integer>> program, ArrayList<Product> products) {
+    public Store(String name, Address address, int numberProducts, String status, List<Map<String, String>> program, List<Product> products) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.address = address;
@@ -66,20 +66,20 @@ public class Store {
         return this;
     }
 
-    public ArrayList<Map<Integer, Integer>> getProgram() {
+    public List<Map<String, String>> getProgram() {
         return program;
     }
 
-    public Store setProgram(ArrayList<Map<Integer, Integer>> program) {
+    public Store setProgram(ArrayList<Map<String, String>> program) {
         this.program = program;
         return this;
     }
 
-    public ArrayList<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public Store setProducts(ArrayList<Product> products) {
+    public Store setProducts(List<Product> products) {
         this.products = products;
         return this;
     }
@@ -96,13 +96,22 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Store{" +
-                "name='" + name + '\'' +
-                ", adress=" + address.toString() +
-                ", numberProducts=" + numberProducts +
-                ", status='" + status + '\'' +
-                ", program=" + program +
-                ", products=" + products.toString() +
-                '}';
+        String afisare = "Store{";
+        afisare += "name='" + name + '\'';
+        if (address != null)
+            afisare += ", adress=" + address.toString();
+        else
+            afisare += ", adress=" + address;
+        afisare += ", numberProducts=" + numberProducts + ", status='" + status + '\'';
+        if (program != null)
+            afisare += ", program=" + program.toString();
+        else
+            afisare += ", program=" + program;
+        if (products != null)
+            afisare += ", products=" + products.toString();
+        else
+            afisare += ", products=" + products;
+        afisare += '}';
+        return afisare;
     }
 }

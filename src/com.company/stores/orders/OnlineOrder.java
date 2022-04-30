@@ -12,7 +12,6 @@ public class OnlineOrder extends Order {
     private Address delivaryAddress;
     private  Voucher Voucher;
     public OnlineOrder(){
-
     }
 
     public OnlineOrder(Customer customer, String paymentMethod, Store store, double price, ArrayList<Product> products, Address delivaryAddress, com.company.stores.Voucher voucher) {

@@ -1,0 +1,7 @@
+sep=,
+name,review,price,manufacturer,category,description,yearCreated,warranty
+saxophone,listReview=[?review={|null|}?],2345.67,manufacturer1,music,descriptionS,2019,3
+Violin,listReview=[?review={|null|}?],3455.67,manufacturer2,music,descriptionV,2017,3
+trumpet,listReview=[?review={|null|}?],1155.67,manufacturer3,music,descriptionT,2020,2
+trombone,listReview=[?review={|null|}?],2455.87,manufacturer4,music,descriptionT,2021,7
+bla,listReview=[?review={|null|}?],22.4,manufacturer5,music,description,2020,2
