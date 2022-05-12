@@ -70,7 +70,7 @@ public class Store {
         return program;
     }
 
-    public Store setProgram(ArrayList<Map<String, String>> program) {
+    public Store setProgram(List<Map<String, String>> program) {
         this.program = program;
         return this;
     }

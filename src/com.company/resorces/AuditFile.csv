@@ -1,12 +1,4 @@
-Admin,Option: 1. Create a store and add this in list (Plus, add each adress in list).,30.04.2022
-Admin,Option: 8. Exit.,30.04.2022
-Customer,Option: 5. Exit.,30.04.2022
-Customer,Option: 4. View all reviews for a product.,30.04.2022
-Admin,Option: 2. Create a product and add this in list,30.04.2022
-Admin,Option: 7. View all produts from a store,30.04.2022
-Customer,Option: 1. View all products from all stores with adresses,30.04.2022
-Customer,Option: 5. Exit,30.04.2022
-Admin,Option: 7. View all produts from a store,30.04.2022
-Customer,Option: 6. Exit,30.04.2022
-Customer,Option: 5. View all products with a price lower then 800,30.04.2022
-Customer,Option: 5. View all products with a price lower then 800,30.04.2022
+role,action,dateWithTime
+Admin,Option: 1. Create a store and add this in list (Plus, add each adress in list),2022/05/12 18:05:04
+Admin,Option: 7. View all produts from a store,2022/05/12 18:08:12
+Admin,Option: 7. View all produts from a store,2022/05/12 18:08:57

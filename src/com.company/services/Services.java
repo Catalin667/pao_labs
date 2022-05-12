@@ -34,7 +34,7 @@ public class Services {
     private Map<UUID, Order> orderList = new HashMap<>();
     private Map<UUID, Voucher> voucherMap = new HashMap<>();
     private List<Map<Store, List<Product>>> storeWithProductsList = new ArrayList<>();
-    private Map<Product,ArrayList<Review>> productWithReviewas = new HashMap<>();
+    private Map<Product,List<Review>> productWithReviewas = new HashMap<>();
     private Map<UUID,Card> cardMap = new HashMap<>();
     private Map<UUID,Address>addressMap = new HashMap<>();
     private Services() throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
@@ -81,7 +81,7 @@ public class Services {
         Map<String,String>p2 =  new HashMap<>();
         p1.put("08:00","19:00");
         p2.put("9:00","15:00");
-        ArrayList<Map<String, String>> program1 = new ArrayList<>(List.of(p1,p1,p1,p1,p1,p2,p2));
+        List<Map<String, String>> program1 = new ArrayList<>(List.of(p1,p1,p1,p1,p1,p2,p2));
         ///////////////////////////////////////////////////  READ FROM STOREFILE ////////////////////////////////////////////////
         List<Store> stores = new ArrayList<>();
         stores  = ReadFromCSV.getInstance(Store.class,"src/com.company/resorces/StoreFile.csv");
@@ -455,6 +455,8 @@ public class Services {
                     Store store = createAStore();
                     addAdressInList(store.getAdress());
                     addStoreInList(store);
+                    addAStoreWithProductLists(store);
+
                     try {
                         WriteInCSV.writeInCSV(Store.class,"src/com.company/resorces/StoreFile.csv",store);
                     } catch (IOException | IllegalAccessException e) {
@@ -624,7 +626,7 @@ public class Services {
         int choice = choose1Or2();
 
         if(choice==1) {
-//            checkConnection();
+            checkConnection();
             adminMenu();
             auditService.action("Admin","Connection + Menu");
         }else {
@@ -970,6 +972,12 @@ public class Services {
         }
     }
 
+    private void addAStoreWithProductLists(Store store){
+        Map<Store,List<Product>> storeWithProductList = new HashMap<>();
+        storeWithProductList.put(store,store.getProducts());
+        storeWithProductsList.add(storeWithProductList);
+    }
+
     private void addCostumerInMap(Customer customer){
         UUID id = customer.getId();
         customerMap.put(id, customer);
@@ -1014,7 +1022,7 @@ public class Services {
     private void addReviewsMap(Product product,Review review){
 
         if(productWithReviewas.get(product)==null){
-            ArrayList<Review> reviews = new ArrayList<>();
+            List<Review> reviews = new ArrayList<>();
             reviews.add(review);
             productWithReviewas.put(product,reviews);
         }
@@ -1062,7 +1070,7 @@ public class Services {
                 System.out.println("Id product doesn't exist!\n Please, enter an existent one!");
             }
         }
-        for(Map.Entry<Product,ArrayList<Review>> pair : productWithReviewas.entrySet()){
+        for(Map.Entry<Product,List<Review>> pair : productWithReviewas.entrySet()){
             if((pair.getKey().getId()).equals(product.getId())){
                 System.out.println("\t"+pair.getKey()+"\t");
                 System.out.println(pair.getValue());

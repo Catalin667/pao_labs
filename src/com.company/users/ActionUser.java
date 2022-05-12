@@ -1,5 +1,8 @@
 package com.company.users;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Date;
 import java.util.UUID;
 
@@ -7,11 +10,11 @@ public class ActionUser {
     private static final UUID id = UUID.randomUUID();
     private String user;
     private String action;
-    private Date date;
+    private String date;
 
     public ActionUser(){}
 
-    public ActionUser(String user, String action, Date date) {
+    public ActionUser(String user, String action, String date) {
         this.user = user;
         this.action = action;
         this.date = date;
@@ -37,11 +40,11 @@ public class ActionUser {
         return this;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public ActionUser setDate(Date date) {
+    public ActionUser setDate(String date) {
         this.date = date;
         return this;
     }
