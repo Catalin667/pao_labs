@@ -1,4 +1,3 @@
-sep=,
 name,review,price,manufacturer,category,description,yearCreated,warranty
 saxophone,listReview=[?review={|null|}?],2345.67,manufacturer1,music,descriptionS,2019,3
 Violin,listReview=[?review={|null|}?],3455.67,manufacturer2,music,descriptionV,2017,3

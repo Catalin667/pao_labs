@@ -429,7 +429,7 @@ public class Services {
         boolean continueMenu = true;
         while(continueMenu){
             System.out.println("\n\tWelcome!\t\n \tYou are admin\t");
-            String s1 ="1. Create a store and add this in list (Plus, add each adress in list)";
+            String s1 ="1. Create a store and add this in list and add each adress in list";
             String s2 ="2. Create a product and add this in list";
             String s3 ="3. Create a costumer and add this in list";
             String s4 ="4. Register a order into a store and add this in list";

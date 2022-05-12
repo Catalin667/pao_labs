@@ -1,4 +1,3 @@
-sep=,
 name,address,numberProducts,status,program,products
 Your music,address={|Cluj|Mica|31|Cluj|},0,open,program=null,products=null
 Music,address={|Sibiu|Buhusi|2|Sibiu|},0,open,program=null,products=null
