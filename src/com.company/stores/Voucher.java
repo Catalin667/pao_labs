@@ -8,6 +8,8 @@ public class Voucher {
     private String mesaje;
     private double value;
 
+    public Voucher(){}
+
     public Voucher(String voucherType, String mesaje, double value) {
         this.voucherType = voucherType;
         this.mesaje = mesaje;
@@ -43,5 +45,15 @@ public class Voucher {
     public Voucher setValue(double value) {
         this.value = value;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Voucher{" +
+                "id=" + id +
+                ", voucherType='" + voucherType + '\'' +
+                ", mesaje='" + mesaje + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

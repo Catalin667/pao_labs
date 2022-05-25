@@ -1,6 +1,9 @@
 package com.company.stores;
 
+import java.util.UUID;
+
 public class Address {
+    private final UUID id = UUID.randomUUID();
     private String city;
     private String street;
     private int number;
@@ -8,6 +11,10 @@ public class Address {
 
     public Address(){
 
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public Address(String city, String street, int number, String county) {

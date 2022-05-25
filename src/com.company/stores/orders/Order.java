@@ -5,6 +5,7 @@ import com.company.stores.Store;
 import com.company.users.Customer;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Order {
@@ -14,14 +15,14 @@ public class Order {
     private String paymentMethod;
     private Store store;
     private double price;
-    private  ArrayList<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     public Order(){
         this.id = UUID.randomUUID();
         orderNumber++;
     }
 
-    public Order(Customer customer, String paymentMethod, Store store, double price, ArrayList<Product> products) {
+    public Order(Customer customer, String paymentMethod, Store store, double price, List<Product> products) {
         this.id = UUID.randomUUID();
         this.customer = customer;
         this.paymentMethod = paymentMethod;
@@ -71,11 +72,11 @@ public class Order {
         return this;
     }
 
-    public ArrayList<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public Order setProducts(ArrayList<Product> products) {
+    public Order setProducts(List<Product> products) {
         this.products = products;
         return this;
     }
