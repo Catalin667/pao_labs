@@ -1,6 +1,8 @@
 package com.company.services;
 
 import com.company.comparator.ProductComparator;
+import com.company.dataHandlerDB.DataBaseConfiguration;
+import com.company.repositories.*;
 import com.company.serialization.ReadFromCSV;
 import com.company.serialization.WriteInCSV;
 import com.company.stores.Address;
@@ -26,6 +28,13 @@ public class Services {
     private static Services instance;
     private static final Scanner read = new Scanner(System.in);
     private static final AuditService auditService = AuditService.createAuditService();
+    private static final AdminRepository adminRepo = AdminRepository.createAdminRepository();
+    private static final CustomerRepository customerRepo = CustomerRepository.createCustomerRepository();
+    private static final AddressRepository addressRepo = AddressRepository.createAddressRepository();
+    private static final StoreRepository storeRepo = StoreRepository.createStoreRepository();
+    private static final InstrumentRepository instrumentRepo = InstrumentRepository.createInstrumentRepository();
+    private static final AccessoryRepository accessoryRepo = AccessoryRepository.createAccessoryRepository();
+    private static final CardRepository cardRepo = CardRepository.createCardRepository();
     private List<Product> productsList = new ArrayList<>();
     private Map<UUID,Product>productsMap = new HashMap<>();
     private Map<UUID, Customer> customerMap = new HashMap<>();
@@ -51,15 +60,30 @@ public class Services {
 
 
     private void init() throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        adminRepo.createTableAdmin();
+        cardRepo.createTableCard();
+        customerRepo.createTableCustomer();
+        addressRepo.createTableAddress();
+        storeRepo.createTableStore();
+        instrumentRepo.createTableInstrument();
+        accessoryRepo.createTableAccessory();
+        adminRepo.insertIntoAdmin(Admin.createAdmin());
+
+
         Address a1 = new Address("Brasov","Sforii",1,"Brasov");
+        addressRepo.insertIntoAddress(a1);
         Address a2=  new Address("Brasov","Toamnei",5,"Brasov");
+        addressRepo.insertIntoAddress(a2);
         Address a3 = new Address("Sibiu","Buhusi",2,"Sibiu");
+        addressRepo.insertIntoAddress(a3);
         Address a4 = new Address("Cluj","Mica",31, "Cluj");
+        addressRepo.insertIntoAddress(a4);
 
         //////////////////////////////////////////////////// READ FROM ADDRESSFILE ///////////////////////////////////////////////
         adressesList  = ReadFromCSV.getInstance(Address.class,"src/com.company/resorces/AddressFile.csv");
         for(Address address:adressesList){
             addressMap.put(address.getId(),address);
+            addressRepo.insertIntoAddress(address);
         }
 
         //////////////////////////////////////////////////// READ FROM INSTRUMENTFILE////////////////////////////////////////////
@@ -67,7 +91,6 @@ public class Services {
         List<Instrument> instruments = new ArrayList<>();
         instruments = ReadFromCSV.getInstance(Instrument.class,"src/com.company/resorces/InstrumentsFile.csv");
         productsList.addAll(instruments);
-
         ////////////////////////////////////////////////// READ FROM ACCESSORYFILE //////////////////////////////////////////////
 
         List<Accessory> accessories = new ArrayList<>();
@@ -91,12 +114,23 @@ public class Services {
             store.setProgram(program1);
             storesList.put(store.getId(),store);
         }
+
+        /////////////////////////////////////////////////  READ FROM CARDFILE /////////////////////////////////////////////////////
+        List<Card> cards = new ArrayList<>();
+        cards  = ReadFromCSV.getInstance(Card.class,"src/com.company/resorces/CardFile.csv");
+        for(Card card:cards){
+            cardMap.put(card.getId(),card);
+            cardRepo.insertIntoCard(card);
+        }
         
         //////////////////////////////////////////////////  READ FROM CUSTOMERFILE ///////////////////////////////////////////////
         List<Customer> customers = new ArrayList<>();
         customers  = ReadFromCSV.getInstance(Customer.class,"src/com.company/resorces/CustomerFile.csv");
         for(Customer customer:customers){
             customerMap.put(customer.getId(),customer);
+            cardRepo.insertIntoCard(customer.getCard());
+
+//            customerRepo.insertIntoCustomer(customer);
         }
 
         ////////////////////////////////////////////////// READ FROM VOUCHERFILE //////////////////////////////////////////////////
@@ -106,12 +140,13 @@ public class Services {
             voucherMap.put(voucher.getId(),voucher);
         }
 
-        /////////////////////////////////////////////////  READ FROM CARDFILE /////////////////////////////////////////////////////
-        List<Card> cards = new ArrayList<>();
-        cards  = ReadFromCSV.getInstance(Card.class,"src/com.company/resorces/CardFile.csv");
-        for(Card card:cards){
-            cardMap.put(card.getId(),card);
-        }
+//        /////////////////////////////////////////////////  READ FROM CARDFILE /////////////////////////////////////////////////////
+//        List<Card> cards = new ArrayList<>();
+//        cards  = ReadFromCSV.getInstance(Card.class,"src/com.company/resorces/CardFile.csv");
+//        for(Card card:cards){
+//            cardMap.put(card.getId(),card);
+//            cardRepo.insertIntoCard(card);
+//        }
 
         addAStoreInListWithProducts();
     }
@@ -436,6 +471,8 @@ public class Services {
             String s5 ="5. Order each store products according to decreasing order by the price of each product";
             String s6 ="6. Register a voucher in vouchers list";
             String s7 ="7. View all produts from a store";
+            String s9 = "8. Change your password.";
+
             String s8 ="8. Exit";
 
             System.out.println("1. Create a store and add this in list (Plus, add each adress in list).");
@@ -445,7 +482,10 @@ public class Services {
             System.out.println("5. Order each store products according to decreasing order by the price of each product.");
             System.out.println("6. Register a voucher in vouchers list.");
             System.out.println("7. View all produts from a store.");
-            System.out.println("8. Exit.");
+            System.out.println("8. Change your password.");
+            System.out.println("9. Exit.");
+
+
 
             System.out.println("Please, enter an option: ");
             int choice = read.nextInt();
@@ -502,6 +542,16 @@ public class Services {
                     auditService.action("Admin","Option: "+s7);
                     break;
                 case 8:
+                    System.out.println("Please enter a new password!");
+                    String newPassword = read.nextLine();
+                    if(newPassword.length()!=0) {
+                        adminRepo.changePassword(newPassword);
+                    }else{
+                        System.out.println("Invalid pasword!");
+                    }
+                    auditService.action("Admin","Option: "+s9);
+                    break;
+                case 9:
                     auditService.action("Admin","Option: "+s8);
                     continueMenu = false;
                     break;
@@ -624,7 +674,7 @@ public class Services {
         int choice = choose1Or2();
 
         if(choice==1) {
-//            checkConnection();
+            checkConnection();
             adminMenu();
             auditService.action("Admin","Connection + Menu");
         }else {
@@ -640,7 +690,6 @@ public class Services {
         String mesaje = readString();
         System.out.println("Please, enter voucher value: ");
         double value =  checkValidDoubleNumber();
-
 
         return new Voucher(voucherType,mesaje,value);
     }

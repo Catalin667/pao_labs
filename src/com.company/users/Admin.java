@@ -1,5 +1,7 @@
 package com.company.users;
 
+import java.util.UUID;
+
 public class Admin {
     private static Admin instance;
     private final  String id;
