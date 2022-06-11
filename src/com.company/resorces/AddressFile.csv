@@ -1,3 +1,4 @@
+sep=,
 city,street,number,county
 Brasov,IoanCuza,3,Brasov
 TarguMures,StradaGheorgheDoja,23,TarguMures
@@ -12,4 +13,3 @@ Brasov,Sforii,1,Brasov
 Brasov,Toamnei,5,Brasov
 Sibiu,Buhusi,2,Sibiu
 Cluj,Mica,31,Cluj
-city,street,2,county
